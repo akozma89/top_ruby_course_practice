@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 SMALL_ALPHABET = ("a".."z").to_a
 LARGE_ALPHABET = ("A".."Z").to_a
 
@@ -17,3 +18,6 @@ end
 
 puts "What do you want to convert?"
 print perform_caesar_cipher(gets)
+
+# "What a string!", 5
+# "Bmfy f xywnsl!"
