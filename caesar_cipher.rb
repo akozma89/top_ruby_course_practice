@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-SMALL_ALPHABET = ("a".."z").to_a
-LARGE_ALPHABET = ("A".."Z").to_a
+
+SMALL_ALPHABET = ('a'..'z').to_a
+LARGE_ALPHABET = ('A'..'Z').to_a
 
 def find_ciphered_character(character, rotation)
   if SMALL_ALPHABET.include?(character)
@@ -12,11 +13,11 @@ def find_ciphered_character(character, rotation)
   end
 end
 
-def perform_caesar_cipher(input_string = "", rotation = 5)
+def perform_caesar_cipher(input_string = '', rotation = 5)
   input_string.chars.map { |character| find_ciphered_character(character, rotation) }.join
 end
 
-puts "What do you want to convert?"
+puts 'What do you want to convert?'
 print perform_caesar_cipher(gets)
 
 # "What a string!", 5

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This class represents the top level class of all games
 class Game
   attr_accessor :players
   attr_reader :winner
@@ -11,7 +12,7 @@ class Game
   end
 
   def create_players
-    self.players.map!.with_index do |item, index|
+    players.map!.with_index do |_, index|
       print "Name of Player #{index + 1}:"
       name = gets.chomp
       print "Sign of #{name}:"
@@ -21,10 +22,10 @@ class Game
   end
 
   def game_over
-    @winner != nil
+    !@winner.nil?
   end
 
-  def set_winner(player)
+  def winner_player(player)
     @winner = player
     stop_game
   end
@@ -34,6 +35,7 @@ class Game
   end
 end
 
+# This class represents the Tic Tac Toe game
 class TicTacToe < Game
   def initialize
     super(2)
@@ -64,44 +66,44 @@ class TicTacToe < Game
   end
 
   def make_turn
-    until game_over do
+    until game_over
       draw_fields
       print "It's your turn #{@current_player.name}:"
-      set_field_value @current_player.ask_step
+      field_value @current_player.ask_step
       set_next_player
     end
   end
 
-  def set_field_value(step)
+  def field_value(step)
     step_selector = ((step[0] - 1) * 3) + (step[1] - 1)
     @fields[step_selector].value = @current_player.sign
-    puts @fields.flatten.flatten.map { |field|
-      field.value
-    }.join
+    puts @fields.flatten.flatten.map(&:value).join
   end
 end
 
+# This class represents a Player
 class Player
   attr_accessor :name
   attr_reader :sign
 
-  def initialize(sign = "x", name = "Player")
+  def initialize(sign = 'x', name = 'Player')
     @sign = sign
     @name = name
     @steps = []
   end
 
   def ask_step
-    make_step gets.chomp.split("")
+    make_step gets.chomp.split('')
   end
 
   def make_step(selector)
-    selectors = selector.map { |id| id.to_i  }
+    selectors = selector.map(&:to_i)
     @steps << selectors
     selectors
   end
 end
 
+# This class represents a Field on the board
 class Field
   attr_accessor :value
 

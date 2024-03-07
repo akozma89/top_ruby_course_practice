@@ -17,7 +17,7 @@ def bubble_sort(input_array = [], remaining = input_array.length)
   bubble_sort(input_array, remaining - 1)
 end
 
-puts bubble_sort([4,3,78,2,0,2]).join(",")
+puts bubble_sort([4, 3, 78, 2, 0, 2]).join(',')
 
 # bubble_sort([4,3,78,2,0,2])
 # [0,2,2,3,4,78]
